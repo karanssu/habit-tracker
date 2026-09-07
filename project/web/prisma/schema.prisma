@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  habits       Habit[]
+}
+
+model Habit {
+  id        String     @id @default(cuid())
+  name      String
+  emoji     String     @default("✅")
+  createdAt DateTime   @default(now())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logs      HabitLog[]
+}
+
+// One row per day a habit was completed. date is stored as midnight UTC
+// for that calendar day, which is what makes @@unique below work as a
+// simple "already logged today?" check.
+model HabitLog {
+  id      String   @id @default(cuid())
+  date    DateTime
+  habitId String
+  habit   Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+
+  @@unique([habitId, date])
+}
