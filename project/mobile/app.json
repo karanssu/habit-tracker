@@ -1,15 +1,12 @@
 {
-  "expo": {
-    "name": "Habit Tracker",
-    "slug": "habit-tracker-mobile",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "backgroundColor": "#f8fafc"
-    },
-    "ios": { "supportsTablet": true },
-    "android": {},
-    "web": { "bundler": "metro" }
-  }
+	"expo": {
+		"name": "Habit Tracker",
+		"slug": "habit-tracker-mobile",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"userInterfaceStyle": "light",
+		"ios": { "supportsTablet": true },
+		"android": {},
+		"web": { "bundler": "metro" }
+	}
 }
